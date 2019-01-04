@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">INVOICE</string>
+
+    // Launch
+    <string name="launch_prompt_name">Your business name</string>
+    <string name="launch_prompt_address">Business address</string>
+    <string name="launch_prompt_email">Email</string>
+    <string name="launch_prompt_phone">Phone number</string>
+    <string name="launch_prompt_currency">Select your currency</string>
+    <string name="launch_continue">Continue</string>
+
+    // Home Screen
+    <string name="home_view_income">View All Incomes</string>
+    <string name="home_view_expenses">View All Expenses</string>
+    <string name="home_total_income">Total Income</string>
+    <string name="home_total_expenses">Total Expenses</string>
+    <string name="home_balance">Balance</string>
+    <string name="home_change_currency">Change Currency</string>
+
+    // Dialog
+    <string name="dialog_initial_title">Please input your initial balance!</string>
+    <string name="dialog_initial_subtitle">This amount will be your basic balance before everything is applied</string>
+    <string name="dialog_initial_prompt">Input Balance Here</string>
+    <string name="dialog_expenses">Add Expense</string>
+    <string name="dialog_income">Add Income</string>
+    <string name="dialog_date">Date</string>
+    <string name="dialog_description">Description</string>
+    <string name="dialog_amount">Amount</string>
+</resources>
