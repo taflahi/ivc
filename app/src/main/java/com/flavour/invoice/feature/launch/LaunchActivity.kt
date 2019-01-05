@@ -1,6 +1,7 @@
 package com.flavour.invoice.feature.launch
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.flavour.invoice.R
 import com.flavour.invoice.constants.CURRENCIES
+import com.flavour.invoice.feature.main.MainActivity
+import com.flavour.invoice.model.Business
+import com.flavour.invoice.storage.Preference
 import com.jakewharton.rxbinding2.widget.RxTextView
 import kotlinx.android.synthetic.main.activity_launch.*
 
@@ -76,6 +80,13 @@ class LaunchActivity : AppCompatActivity(), CurrencyAdapter.OnClickListener {
                 Log.e("DATA", phoneNumber)
                 Log.e("DATA", email)
                 Log.e("DATA", currency)
+
+                Preference(this).setCurrency(currency)
+                Preference(this).setMyBusiness(Business(businessName, address, email, phoneNumber))
+
+                Intent(this, MainActivity::class.java).also {
+                    startActivity(it)
+                }
             }
         }
 

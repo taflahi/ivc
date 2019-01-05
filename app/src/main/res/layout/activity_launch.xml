@@ -5,20 +5,16 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
                                              tools:context=".feature.launch.LaunchActivity"
-                                             android:background="@color/colorPrimary">
+                                             android:background="@color/white">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:fontFamily="@font/gtwalsheimregular"
-            android:textSize="64sp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/appTitle"/>
+
+    <ImageView android:layout_width="300dp" android:layout_height="wrap_content"
+               android:src="@drawable/logo_transparent"
+               android:scaleType="fitCenter"
+               android:adjustViewBounds="true"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+    />
 
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
@@ -102,7 +98,7 @@
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/gtwalsheimmedium"
             android:textSize="18sp"
-            android:background="@drawable/bg_white_rounded_rectangle"
+            android:background="@drawable/bg_white_rounded_rectangle_grey"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="32dp"

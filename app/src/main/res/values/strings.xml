@@ -26,4 +26,5 @@
     <string name="dialog_date">Date</string>
     <string name="dialog_description">Description</string>
     <string name="dialog_amount">Amount</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
