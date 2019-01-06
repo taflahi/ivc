@@ -22,6 +22,12 @@
         </activity>
         <activity android:name=".feature.business.BusinessActivity">
         </activity>
+        <activity android:name=".feature.invoice.InvoiceActivity">
+        </activity>
+        <activity android:name=".feature.item.ItemActivity">
+        </activity>
+        <activity android:name=".feature.charge.ChargeActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.widget.PopupMenu
 import com.flavour.invoice.R
 import androidx.appcompat.app.AppCompatActivity
 import com.flavour.invoice.feature.business.BusinessActivity
+import com.flavour.invoice.feature.invoice.InvoiceActivity
 import com.flavour.invoice.storage.Preference
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,7 +47,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupButton(){
-
+        newButton.setOnClickListener {
+            Intent(this, InvoiceActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
 }
