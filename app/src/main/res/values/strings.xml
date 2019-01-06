@@ -33,6 +33,12 @@
     <string name="charge_name">Description</string>
     <string name="charge_value">Value</string>
 
+    // Billing Screen
+    <string name="billing_title">Edit Billing Detail</string>
+    <string name="billing_date">Invoice Date</string>
+    <string name="billing_due_date">Due Date</string>
+    <string name="billing_number">Invoice Number</string>
+
     // Dialog
     <string name="dialog_initial_title">Please input your initial balance!</string>
     <string name="dialog_initial_subtitle">This amount will be your basic balance before everything is applied</string>
