@@ -20,6 +20,8 @@
                 android:name=".feature.main.MainActivity"
                 android:label="@string/title_activity_main">
         </activity>
+        <activity android:name=".feature.business.BusinessActivity">
+        </activity>
     </application>
 
 </manifest>

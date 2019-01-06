@@ -23,7 +23,7 @@ class Preference(context: Context){
 
     fun getMyBusiness(): Business?{
         val businessString = sharedPref.getString("MYBUSINESS", "")
-        if(businessString.isBlank()) return null
+        if(businessString == null || businessString.isBlank()) return null
 
         val gson = GsonBuilder().create()
         return gson.fromJson(businessString, Business::class.java)

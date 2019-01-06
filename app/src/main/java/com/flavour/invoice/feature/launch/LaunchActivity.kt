@@ -29,6 +29,7 @@ class LaunchActivity : AppCompatActivity(), CurrencyAdapter.OnClickListener {
 
         setupEditTexts()
         setupRecyclerView()
+        setupDirection()
     }
 
     @SuppressLint("CheckResult")
@@ -96,6 +97,16 @@ class LaunchActivity : AppCompatActivity(), CurrencyAdapter.OnClickListener {
 
         popupLayout.setOnClickListener {
             popupLayout.visibility = View.GONE
+        }
+    }
+
+    fun setupDirection(){
+        val business = Preference(this).getMyBusiness()
+        val currency = Preference(this).getCurrency()
+        if(business != null && currency!!.isNotBlank()) {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 

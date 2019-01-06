@@ -10,12 +10,12 @@
     <string name="launch_continue">Continue</string>
 
     // Home Screen
-    <string name="home_view_income">View All Incomes</string>
-    <string name="home_view_expenses">View All Expenses</string>
-    <string name="home_total_income">Total Income</string>
-    <string name="home_total_expenses">Total Expenses</string>
-    <string name="home_balance">Balance</string>
-    <string name="home_change_currency">Change Currency</string>
+    <string name="home_add_invoice">New Invoice</string>
+    <string name="home_menu_edit_business">Edit My Business</string>
+
+    // Business Screen
+    <string name="business_title">Edit Business Details</string>
+    <string name="business_save">Save</string>
 
     // Dialog
     <string name="dialog_initial_title">Please input your initial balance!</string>
