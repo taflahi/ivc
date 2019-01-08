@@ -1,13 +1,17 @@
 package com.flavour.invoice.model
 
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import org.joda.time.DateTime
 
 data class Invoice(
-    var billTo: Business,
-    var isPaid: Boolean,
-    var dateTime: DateTime,
-    var dueDateTime: DateTime,
-    var number: String,
-    var items: MutableList<InvoiceItem>,
-    var charges: MutableList<InvoiceCharge>
-)
+    @PrimaryKey var id: Int,
+    var billTo: Business? = null,
+    var isPaid: Boolean? = null,
+    var dateTime: DateTime? = null,
+    var dueDateTime: DateTime? = null,
+    var number: String? = null,
+    var items: MutableList<InvoiceItem> = emptyList<InvoiceItem>().toMutableList(),
+    var charges: MutableList<InvoiceCharge> = emptyList<InvoiceCharge>().toMutableList(),
+    var total: Int = 0
+): RealmObject()
