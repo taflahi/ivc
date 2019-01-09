@@ -22,6 +22,7 @@
     <string name="invoice_add_item">Add Item</string>
     <string name="invoice_add_charge">Add Charge</string>
     <string name="invoice_delete">Delete Invoice</string>
+    <string name="invoice_toggle_paid">Toggle Paid</string>
 
     // Item Screen
     <string name="item_title">Edit Item Details</string>

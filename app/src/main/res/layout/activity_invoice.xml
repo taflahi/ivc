@@ -72,6 +72,18 @@
                 android:layout_marginStart="16dp"
                 android:id="@+id/dateTextView"/>
         <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/toTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dateTextView"
+                android:layout_marginEnd="16dp"
+                android:gravity="end"
+                android:text="Not Paid"
+                android:fontFamily="@font/gtwalsheimbold"
+                android:layout_marginStart="16dp"
+                android:id="@+id/paidTextView"/>
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/dateTextView"
@@ -88,7 +100,7 @@
                 app:layout_constraintStart_toEndOf="@id/numberTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="Rp. 123,456,789"
-                android:fontFamily="@font/gtwalsheimblack"
+                android:fontFamily="@font/gtwalsheimbold"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="end"

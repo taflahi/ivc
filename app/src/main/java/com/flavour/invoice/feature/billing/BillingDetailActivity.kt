@@ -1,7 +1,9 @@
 package com.flavour.invoice.feature.billing
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
 import com.flavour.invoice.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +31,7 @@ class BillingDetailActivity : AppCompatActivity() {
 
         getData()
         setupEditText()
+        setupButton()
     }
 
     fun getData(){
@@ -98,6 +101,34 @@ class BillingDetailActivity : AppCompatActivity() {
             showDatePicker {
                 dateEditText.setText(it)
             }
+        }
+    }
+
+    private fun setupButton(){
+        saveButton.setOnClickListener {
+            name = nameEditText.text.toString()
+            address = addressEditText.text.toString()
+            email = emailEditText.text.toString()
+            phone = phoneEditText.text.toString()
+            date = dateEditText.text.toString()
+            dueDate = dueDateEditText.text.toString()
+            number = numberEditText.text.toString()
+
+            val intent = Intent()
+                .putExtra("NAME", name)
+                .putExtra("ADDRESS", address)
+                .putExtra("EMAIL", email)
+                .putExtra("PHONE", phone)
+                .putExtra("DATE", date)
+                .putExtra("DUEDATE", dueDate)
+                .putExtra("NUMBER", number)
+
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+
+        backButton.setOnClickListener {
+            finish()
         }
     }
 
