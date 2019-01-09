@@ -43,12 +43,12 @@ class ItemActivity : AppCompatActivity() {
             if(discount > valueEditText.text.toString().toDouble()){
                 showInvalidDiscount()
             } else {
-                val item = InvoiceItem(nameEditText.text.toString(), valueEditText.text.toString().toDouble(), discount)
-
-                val gson = GsonBuilder().create()
-                val itemString = gson.toJson(item, InvoiceItem::class.java)
-
-                setResult(Activity.RESULT_OK, Intent().putExtra("ITEM", itemString))
+//                val item = InvoiceItem(nameEditText.text.toString(), valueEditText.text.toString().toDouble(), discount)
+//
+//                val gson = GsonBuilder().create()
+//                val itemString = gson.toJson(item, InvoiceItem::class.java)
+//
+//                setResult(Activity.RESULT_OK, Intent().putExtra("ITEM", itemString))
                 finish()
             }
         }

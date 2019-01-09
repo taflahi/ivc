@@ -4,8 +4,8 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 
-data class InvoiceCharge(
-    @PrimaryKey var id: Int,
-    var name: String,
-    var value: Double
+open class InvoiceCharge(
+    @PrimaryKey var id: Int = 0,
+    var name: String = "",
+    var value: Double = 0.0
 ): RealmObject()

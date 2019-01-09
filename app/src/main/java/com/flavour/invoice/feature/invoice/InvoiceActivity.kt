@@ -1,9 +1,13 @@
 package com.flavour.invoice.feature.invoice
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.flavour.invoice.R
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
+import com.flavour.invoice.feature.billing.BillingDetailActivity
 import com.flavour.invoice.feature.charge.ChargeActivity
 import com.flavour.invoice.feature.item.ItemActivity
 import com.flavour.invoice.model.Invoice
@@ -44,8 +48,9 @@ class InvoiceActivity : AppCompatActivity() {
 
                 invoice = Invoice(id = nextId)
                 invoice.number = "INV" + nextId.toString()
-                invoice.dateTime = DateTime.now().withTime(0,0,0,0)
-                invoice.dueDateTime = DateTime.now().withTime(0,0,0,0).plusDays(2)
+                val dateFormat = DateTimeFormat.forPattern("EEEE, dd MMMM yyyy")
+                invoice.dateTime = dateFormat.print(DateTime.now().withTime(0,0,0,0))
+                invoice.dueDateTime = dateFormat.print(DateTime.now().withTime(0,0,0,0).plusDays(2))
                 it.insert(invoice)
             }
         } else {
@@ -64,8 +69,7 @@ class InvoiceActivity : AppCompatActivity() {
         toTextView.text = "To: " + invoice.billTo?.name
         numberTextView.text = invoice.number
 
-        val dateFormat = DateTimeFormat.forPattern("EEEE, dd MMMM yyyy")
-        dateTextView.text = dateFormat.print(invoice.dateTime)
+        dateTextView.text = invoice.dateTime
 
         val decimalFormat = DecimalFormat()
         totalTextView.text = currency + " " + decimalFormat.format(invoice.total)
@@ -87,9 +91,41 @@ class InvoiceActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
+
+        menuButton.setOnClickListener {
+            val popupMenu = PopupMenu(this@InvoiceActivity, menuButton)
+            popupMenu.menuInflater.inflate(R.menu.main_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener {
+
+                true
+            }
+
+            popupMenu.show()
+        }
+
+        invoiceDescriptionBox.setOnClickListener {
+            Intent(this@InvoiceActivity, BillingDetailActivity::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun showDeletePopup(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Are you sure you want to delete this invoice?")
+            .setMessage("This action is irreversible")
+            .setPositiveButton("YES", DialogInterface.OnClickListener { dialogInterface, i ->
+                realm.executeTransaction {
+                    invoice.deleteFromRealm()
+                    finish()
+                }
+            }).setNegativeButton("NO", DialogInterface.OnClickListener { dialogInterface, i ->
+
+            }).show()
     }
 }

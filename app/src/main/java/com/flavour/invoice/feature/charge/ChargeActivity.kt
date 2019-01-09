@@ -36,12 +36,12 @@ class ChargeActivity : AppCompatActivity() {
 
     fun setupButton(){
         saveButton.setOnClickListener {
-            val item = InvoiceCharge(nameEditText.text.toString(), valueEditText.text.toString().toDouble())
-
-            val gson = GsonBuilder().create()
-            val itemString = gson.toJson(item, InvoiceCharge::class.java)
-
-            setResult(Activity.RESULT_OK, Intent().putExtra("CHARGE", itemString))
+//            val item = InvoiceCharge(nameEditText.text.toString(), valueEditText.text.toString().toDouble())
+//
+//            val gson = GsonBuilder().create()
+//            val itemString = gson.toJson(item, InvoiceCharge::class.java)
+//
+//            setResult(Activity.RESULT_OK, Intent().putExtra("CHARGE", itemString))
             finish()
         }
 
