@@ -16,6 +16,7 @@
     // Business Screen
     <string name="business_title">Edit Business Details</string>
     <string name="business_save">Save</string>
+    <string name="business_delete">Delete</string>
 
     // Invoice Screen
     <string name="invoice_title">Create Your Invoice</string>
@@ -23,6 +24,7 @@
     <string name="invoice_add_charge">Add Charge</string>
     <string name="invoice_delete">Delete Invoice</string>
     <string name="invoice_toggle_paid">Toggle Paid</string>
+    <string name="invoice_pdf">Generate PDF</string>
 
     // Item Screen
     <string name="item_title">Edit Item Details</string>

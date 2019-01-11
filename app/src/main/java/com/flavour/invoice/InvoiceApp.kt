@@ -39,7 +39,7 @@ open class InvoiceApp: Application(){
                     .addField("dateTime", String::class.java)
                     .addField("dueDateTime", String::class.java)
                     .addField("number", String::class.java)
-                    .addField("total", Int::class.java)
+                    .addField("total", Double::class.java)
                     .addRealmListField("items", schema.get("InvoiceItem"))
                     .addRealmListField("charges", schema.get("InvoiceCharge"))
             }

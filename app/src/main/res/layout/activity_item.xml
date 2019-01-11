@@ -46,6 +46,19 @@
                 android:focusable="true"
                 android:visibility="gone"
                 android:id="@+id/saveButton"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="@string/business_delete"
+                android:padding="12dp"
+                app:layout_constraintEnd_toStartOf="@id/saveButton"
+                android:fontFamily="@font/gtwalsheimregular"
+                android:textColor="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:id="@+id/deleteButton"/>
     </android.support.constraint.ConstraintLayout>
 
     <ScrollView

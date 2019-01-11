@@ -15,4 +15,15 @@
             android:maxLines="4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/itemTotalTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp"
+            android:text="Rp. 123,456,789"
+            android:fontFamily="@font/gtwalsheimbold"
+            android:maxLines="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

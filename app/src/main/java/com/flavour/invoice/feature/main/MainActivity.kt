@@ -14,6 +14,7 @@ import com.flavour.invoice.model.Invoice
 import com.flavour.invoice.storage.Preference
 import io.realm.Realm
 import io.realm.RealmResults
+import io.realm.Sort
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnClickListener {
         myBusiness = Preference(this).getMyBusiness()
 
         realm.executeTransaction {
-            val invResults = it.where(Invoice::class.java).findAll()
+            val invResults = it.where(Invoice::class.java).sort("id", Sort.DESCENDING).findAll()
             invoices = emptyList<Invoice>().toMutableList()
             invResults.forEach { inv ->
                 invoices.add(inv)

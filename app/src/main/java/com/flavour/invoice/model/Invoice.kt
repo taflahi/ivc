@@ -14,5 +14,5 @@ open class Invoice(
     var number: String? = null,
     var items: RealmList<InvoiceItem>? = null,
     var charges: RealmList<InvoiceCharge>? = null,
-    var total: Int? = 0
+    var total: Double = 0.0
 ): RealmObject()
