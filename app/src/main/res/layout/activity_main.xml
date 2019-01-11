@@ -5,12 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.main.MainActivity">
+        tools:context=".feature.main.MainActivity"
+        android:background="@color/grey">
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:id="@+id/menuBar">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,6 +35,14 @@
                 android:focusable="true"
                 android:id="@+id/menuButton"/>
     </android.support.constraint.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@id/menuBar"
+            app:layout_constraintBottom_toTopOf="@id/newButton"
+            app:layout_constraintVertical_bias="0"/>
 
     <Button android:layout_width="0dp"
             android:layout_height="52dp"
