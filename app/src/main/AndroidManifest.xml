@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".feature.billing.BillingDetailActivity">
         </activity>
+        <activity android:name=".feature.viewer.ViewerActivity">
+        </activity>
     </application>
 
 </manifest>

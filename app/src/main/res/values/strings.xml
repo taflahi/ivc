@@ -43,6 +43,11 @@
     <string name="billing_due_date">Due Date</string>
     <string name="billing_number">Invoice Number</string>
 
+    // Preview Screen
+    <string name="preview_title">Preview</string>
+    <string name="preview_save">Save</string>
+    <string name="preview_send">Send</string>
+
     // Dialog
     <string name="dialog_initial_title">Please input your initial balance!</string>
     <string name="dialog_initial_subtitle">This amount will be your basic balance before everything is applied</string>

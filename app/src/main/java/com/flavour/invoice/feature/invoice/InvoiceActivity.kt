@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.flavour.invoice.feature.billing.BillingDetailActivity
 import com.flavour.invoice.feature.charge.ChargeActivity
 import com.flavour.invoice.feature.item.ItemActivity
+import com.flavour.invoice.feature.viewer.ViewerActivity
+import com.flavour.invoice.html.Generator
 import com.flavour.invoice.model.Business
 import com.flavour.invoice.model.Invoice
 import com.flavour.invoice.model.InvoiceCharge
@@ -32,6 +34,7 @@ class InvoiceActivity : AppCompatActivity(), InvoiceAdapter.OnClickListener {
     lateinit var invoice: Invoice
     lateinit var realm: Realm
     lateinit var currency: String
+    var myBusiness: Business? = null
     var itemList: MutableList<InvoiceItem> = emptyList<InvoiceItem>().toMutableList()
     var chargeList: MutableList<InvoiceCharge> = emptyList<InvoiceCharge>().toMutableList()
 
@@ -51,6 +54,8 @@ class InvoiceActivity : AppCompatActivity(), InvoiceAdapter.OnClickListener {
     }
 
     fun setupNewData(){
+        myBusiness = Preference(this).getMyBusiness()
+
         val data = intent?.extras?.getString("INVOICE_ID", "")
         if(data.isNullOrBlank()){
             realm.executeTransaction {
@@ -155,6 +160,8 @@ class InvoiceActivity : AppCompatActivity(), InvoiceAdapter.OnClickListener {
                     showDeletePopup()
                 } else if(it.title.equals(getString(R.string.invoice_toggle_paid))){
                     togglePaid()
+                } else if(it.title.equals(getString(R.string.invoice_pdf))){
+                    generatePdf()
                 }
                 true
             }
@@ -206,6 +213,13 @@ class InvoiceActivity : AppCompatActivity(), InvoiceAdapter.OnClickListener {
             } else if(requestCode == REQ_CHARGE){
                 deleteFromCharges(data)
             }
+        }
+    }
+
+    fun generatePdf(){
+        Generator().generate(invoice, myBusiness!!, currency,this)
+        Intent(this, ViewerActivity::class.java).putExtra("PDF", invoice.number + ".pdf").also {
+            startActivity(it)
         }
     }
 
