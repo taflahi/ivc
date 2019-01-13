@@ -12,6 +12,7 @@ import com.flavour.invoice.feature.invoice.InvoiceActivity
 import com.flavour.invoice.model.Business
 import com.flavour.invoice.model.Invoice
 import com.flavour.invoice.storage.Preference
+import com.google.android.gms.ads.AdRequest
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnClickListener {
 
         setupMenu()
         setupButton()
+        setupAds()
     }
 
     override fun onStart() {
@@ -97,6 +99,12 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnClickListener {
         Intent(this, InvoiceActivity::class.java).putExtra("INVOICE_ID", invoice.id.toString()).also {
             startActivity(it)
         }
+    }
+
+    fun setupAds(){
+//        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111" // test
+//        adView.adUnitId = "ca-app-pub-4510440310817876/1258452022" // production
+        adView.loadAd(AdRequest.Builder().build())
     }
 
 }

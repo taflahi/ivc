@@ -4,6 +4,7 @@ import android.app.Application
 import com.flavour.invoice.model.Business
 import com.flavour.invoice.model.InvoiceCharge
 import com.flavour.invoice.model.InvoiceItem
+import com.google.android.gms.ads.MobileAds
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmList
@@ -46,5 +47,7 @@ open class InvoiceApp: Application(){
         }.build()
 
         Realm.setDefaultConfiguration(config)
+
+        MobileAds.initialize(this, "ca-app-pub-4510440310817876~7386421267");
     }
 }

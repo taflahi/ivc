@@ -12,6 +12,9 @@
             android:roundIcon="@mipmap/ic_launcher_new_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-4510440310817876~7386421267"/>
         <activity android:name=".feature.launch.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

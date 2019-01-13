@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.charge.ChargeActivity">
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@color/colorPrimary"
@@ -58,7 +58,7 @@
                 android:focusable="true"
                 android:visibility="gone"
                 android:id="@+id/deleteButton"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@id/menuBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0">
-        <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                      android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="wrap_content"
@@ -105,6 +105,6 @@
                         android:inputType="numberDecimal"
                         android:id="@+id/valueEditText"/>
             </com.google.android.material.textfield.TextInputLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

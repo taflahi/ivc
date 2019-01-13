@@ -28,4 +28,13 @@ class Preference(context: Context){
         val gson = GsonBuilder().create()
         return gson.fromJson(businessString, Business::class.java)
     }
+
+    fun incrementSaveNumber(){
+        val num = sharedPref.getInt("NUM", 0)
+        sharedPref.edit().putInt("NUM", num + 1).apply()
+    }
+
+    fun getSaveNumber(): Int{
+        return sharedPref.getInt("NUM", 0)
+    }
 }

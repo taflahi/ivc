@@ -28,23 +28,45 @@ import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
 import com.flavour.invoice.html.Generator
 import com.flavour.invoice.html.PdfPrint
+import com.flavour.invoice.storage.Preference
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import com.google.android.material.snackbar.Snackbar
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityCompat.OnRequestPermissionsResultCallback {
-
+class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityCompat.OnRequestPermissionsResultCallback, RewardedVideoAdListener {
     var pdfRenderer: PdfRenderer? = null
     var html: String? = null
     var number: String? = null
+    private lateinit var mRewardedVideoAd: RewardedVideoAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewer)
 
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+        mRewardedVideoAd.rewardedVideoAdListener = this
+        loadRewardedVideoAd()
+
         setupButton()
         setupData()
         startWebView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mRewardedVideoAd.resume(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        mRewardedVideoAd.pause(this)
     }
 
     fun setupButton(){
@@ -53,7 +75,7 @@ class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityComp
         }
 
         saveButton.setOnClickListener {
-            downloadPermission()
+            processSave()
         }
 
 //        menuButton.setOnClickListener {
@@ -96,7 +118,7 @@ class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityComp
 
     fun setupPdf(){
         number?.apply {
-            val file = File(cacheDir, this + ".pdf")
+            val file = File(filesDir, this + ".pdf")
             val parcelDescriptor =  ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
 
             parcelDescriptor.apply {
@@ -121,18 +143,18 @@ class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityComp
 
     fun createPdf(){
         val jobName = "Invoice Free Gen"
-        var attributes = PrintAttributes.Builder()
+        val attributes = PrintAttributes.Builder()
             .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
             .setResolution(PrintAttributes.Resolution("pdf", "pdf", 600, 600))
             .setMinMargins(PrintAttributes.Margins.NO_MARGINS).build()
 
         number?.apply {
-            val file = File(cacheDir.toURI())
+            val file = File(filesDir.toURI())
 
             val pdfPrint = PdfPrint(attributes, this@ViewerActivity, this@ViewerActivity)
             val printAdapter = pdfWebView.createPrintDocumentAdapter(jobName)
 
-            pdfPrint.printNew(printAdapter, file, this + ".pdf", cacheDir.absolutePath)
+            pdfPrint.printNew(printAdapter, file, this + ".pdf", filesDir.absolutePath)
         }
     }
 
@@ -163,7 +185,7 @@ class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityComp
 
     fun downloadPdf(){
         number?.apply {
-            val currentFile = File(cacheDir, this + ".pdf")
+            val currentFile = File(filesDir, this + ".pdf")
 
             val byteArray = currentFile.readBytes()
             Log.e("ARRAY", byteArray.size.toString())
@@ -179,20 +201,60 @@ class ViewerActivity : AppCompatActivity(), PdfPrint.OnFinishedAll, ActivityComp
         }
     }
 
-    fun sendPdf(){
-        number?.apply {
-            val currentFile = File(cacheDir, this + ".pdf")
-
-//            val uri = FileProvider.getUriForFile(this@ViewerActivity, "com.flavour.invoice.provider", currentFile)
-            val uri = Uri.fromFile(currentFile)
-            val intent = ShareCompat.IntentBuilder.from(this@ViewerActivity)
-                .setType("application/pdf")
-                .setStream(uri)
-                .setChooserTitle("Send Invoice")
-                .createChooserIntent()
-                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-            startActivity(intent)
+    fun processSave(){
+        val saveNumber = Preference(this).getSaveNumber()
+        if(saveNumber % 5 == 4){
+            showRewardedVideo()
+        } else {
+            downloadPermission()
         }
+
+        Preference(this).incrementSaveNumber()
+    }
+
+    private fun showRewardedVideo() {
+        if (mRewardedVideoAd.isLoaded) {
+            mRewardedVideoAd.show()
+        }
+    }
+
+    private fun loadRewardedVideoAd() {
+        if (!mRewardedVideoAd.isLoaded) {
+            mRewardedVideoAd.loadAd("ca-app-pub-4510440310817876/4328125038", //prod ca-app-pub-4510440310817876/4328125038
+                AdRequest.Builder().build()) //test ca-app-pub-3940256099942544/5224354917
+        }
+    }
+
+    override fun onRewardedVideoAdClosed() {
+        loadRewardedVideoAd()
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {
+
+    }
+
+    override fun onRewardedVideoAdLoaded() {
+
+    }
+
+    override fun onRewardedVideoAdOpened() {
+
+    }
+
+    override fun onRewardedVideoCompleted() {
+
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+        // go to save pdf
+        downloadPermission()
+    }
+
+    override fun onRewardedVideoStarted() {
+
+    }
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +8,7 @@
         tools:context=".feature.viewer.ViewerActivity"
         android:id="@+id/mainLayout">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@color/colorPrimary"
@@ -46,7 +46,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:id="@+id/saveButton"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <WebView
             android:layout_width="match_parent"
@@ -78,4 +78,4 @@
             />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
