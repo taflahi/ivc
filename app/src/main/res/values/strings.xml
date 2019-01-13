@@ -46,7 +46,7 @@
     // Preview Screen
     <string name="preview_title">Preview</string>
     <string name="preview_save">Save</string>
-    <string name="preview_send">Send</string>
+    <string name="preview_send">Send Invoice</string>
 
     // Dialog
     <string name="dialog_initial_title">Please input your initial balance!</string>
