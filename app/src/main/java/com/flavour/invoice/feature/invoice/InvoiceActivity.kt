@@ -217,8 +217,8 @@ class InvoiceActivity : AppCompatActivity(), InvoiceAdapter.OnClickListener {
     }
 
     fun generatePdf(){
-        Generator().generate(invoice, myBusiness!!, currency,this)
-        Intent(this, ViewerActivity::class.java).putExtra("PDF", invoice.number + ".pdf").also {
+        val html = Generator().generateHtml(invoice, myBusiness!!, currency,this, invoice.isPaid)
+        Intent(this, ViewerActivity::class.java).putExtra("HTML", html).putExtra("NUMBER", invoice.number).also {
             startActivity(it)
         }
     }

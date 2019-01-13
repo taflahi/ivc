@@ -4,10 +4,6 @@ import android.content.Context
 import android.util.Log
 import com.flavour.invoice.model.Business
 import com.flavour.invoice.model.Invoice
-import com.itextpdf.text.Document
-import com.itextpdf.text.PageSize
-import com.itextpdf.text.pdf.PdfWriter
-import com.itextpdf.tool.xml.XMLWorkerHelper
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import org.xml.sax.InputSource
@@ -27,34 +23,7 @@ open class Generator{
             "            </td>\n" +
             "        </tr>"
 
-    public fun generate(invoice: Invoice, myBusiness: Business, currency: String, context: Context){
-        val html = generateHtml(invoice, myBusiness, currency, context)
-
-        val file = File(context.cacheDir, invoice.number + ".pdf")
-        val os = FileOutputStream(file)
-
-        val document = Document()
-        val pdfWriter = PdfWriter.getInstance(document, os)
-
-        document.addAuthor("Invoice Free")
-        document.addCreationDate()
-        document.addProducer()
-        document.addCreator("Invoice App")
-        document.addTitle(invoice.number)
-        document.pageSize = PageSize.A4
-
-        document.open()
-
-        val helper = XMLWorkerHelper.getInstance()
-
-        helper.parseXHtml(pdfWriter, document, ByteArrayInputStream(html.toByteArray(StandardCharsets.UTF_8)))
-
-        document.close()
-        pdfWriter.close()
-        os.close()
-    }
-
-    fun generateHtml(invoice: Invoice, myBusiness: Business, currency: String, context: Context) : String{
+    fun generateHtml(invoice: Invoice, myBusiness: Business, currency: String, context: Context, isPaid: Boolean = false) : String{
         val template = BufferedReader(InputStreamReader(context.assets.open("template1.html")))
 
         var content = ""
@@ -118,16 +87,15 @@ open class Generator{
             // discount
             if(invoiceItem.discountValue > 0.0){
                 var rowDiscount = itemTemplate
-                rowDiscount = rowDiscount.replace(":name", "Discount")
-                rowDiscount = rowDiscount.replace(":value", formatNumber(currency, invoiceItem.discountValue))
+                rowDiscount = rowDiscount.replace(":name", "&nbsp;&nbsp;&nbsp;&nbsp;Discount")
+                rowDiscount = rowDiscount.replace(":value", formatNumber(currency, invoiceItem.discountValue, positive = false))
                 rowDiscount = rowDiscount.replace(":class", discountClass)
 
                 items += (rowDiscount + "\n")
             }
-
-            content = content.replace(":items", items)
         }
 
+        content = content.replace(":items", items)
         content = content.replace(":subtotal", formatNumber(currency, total))
 
         // replace charges
@@ -145,19 +113,25 @@ open class Generator{
             row = row.replace(":class", itemClass)
 
             charges += (row + "\n")
-
-            content = content.replace(":charges", charges)
         }
 
+        content = content.replace(":charges", charges)
         content = content.replace(":total", formatNumber(currency, invoice.total))
+
+        var paid = ""
+        if(isPaid) paid = "<div class=\"centre\"><strong>PAID</strong></div>"
+        content = content.replace(":paid", paid)
 
         return content
     }
 
-    fun formatNumber(currency: String, value: Double): String{
+    fun formatNumber(currency: String, value: Double, positive: Boolean = true): String{
         val df = DecimalFormat("###,###.00")
         df.roundingMode = RoundingMode.CEILING
 
-        return currency + " " + df.format(value)
+        if(positive)
+            return currency + " " + df.format(value)
+        else
+            return "- " + currency + " " + df.format(value)
     }
 }

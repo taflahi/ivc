@@ -9,6 +9,7 @@
             android:id="@+id/itemNameTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="8dp"
             android:text="ITEMS"
             android:fontFamily="@font/gtwalsheimbold"

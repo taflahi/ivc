@@ -75,20 +75,6 @@
         font-weight: bold;
     }
 
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-
     /** RTL **/
     .rtl {
         direction: rtl;
@@ -101,6 +87,22 @@
 
     .rtl table tr td:nth-child(2) {
         text-align: left;
+    }
+
+    .centre {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 25%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: auto;
+      width: 200px; /* Need a specific value to work */
+      height: 200px;
+      text-align: center;
+      font-size: 56px;
+      text-decoration: underline overline;
+      color: #33967F;
     }
     </style>
 </head>
@@ -147,6 +149,8 @@
                 </table>
             </td>
         </tr>
+
+        :paid
 
         <tr class="heading">
             <td>

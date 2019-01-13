@@ -24,14 +24,6 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-    packagingOptions {
-        exclude 'META-INF/LICENSE-LGPL-3.txt'
-        exclude 'META-INF/LICENSE-LGPL-2.1.txt'
-        exclude 'META-INF/LICENSE-GPL-2.txt'
-        exclude 'META-INF/LICENSE-GPL-3.txt'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE-W3C-TEST'
-    }
 }
 
 dependencies {
@@ -47,6 +39,5 @@ dependencies {
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     implementation 'joda-time:joda-time:2.10.1'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.itextpdf:itextg:5.5.10'
-    implementation group: 'com.itextpdf.tool', name: 'xmlworker', version: '5.5.10'
+    implementation 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
 }
